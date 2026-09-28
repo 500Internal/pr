@@ -5,26 +5,42 @@ import "fmt"
 func main() {
 	fmt.Println("Проект 'Простая библиотека' запущен.")
 
-	book := Book{
+	userID := 1
+	user1 := Reader{
+		ID:        &userID,
+		FirstName: "Пётр",
+		LastName:  "Петров",
+		IsActive:  true,
+	}
+
+	book1 := Book{
 		ID:     1,
-		Title:  "Мастер и Маргарита",
-		Author: "Михаил Булгаков",
-		Year:   1967,
+		Title:  "Война и мир",
+		Author: "Лев Толстой",
+		Year:   1869,
 	}
 
-	reader := Reader{
-		ID:       1,
-		Name:     "Иван",
-		IsActive: true,
+	book1.IssueBook(&user1)
+	fmt.Println(book1)
+	fmt.Println("---")
+
+	reader2ID := 2
+	reader2 := Reader{
+		ID:        &reader2ID,
+		FirstName: "Sergey",
+		LastName:  "Meniaylo",
+		IsActive:  true,
 	}
+	book1.IssueBook(&reader2)
+	fmt.Println("---")
 
-	fmt.Println(book)
+	user1.IsActive = false
+	fmt.Println(user1)
+	fmt.Println("---")
 
-	book.IssueBook(reader)
+	book1.IssueBook(&user1)
+	fmt.Println("---")
 
-	book.IssueBook(reader)
-
-	book.ReturnBook()
-
-	book.ReturnBook()
+	book1.ReturnBook()
+	fmt.Println(book1)
 }
